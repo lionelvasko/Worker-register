@@ -24,7 +24,7 @@ namespace Dolgozó_nyilvántartó.Applciation
             var workers = _controller.ListAll();
             foreach (var worker in workers)
             {
-                host.WriteLine(worker.Name);
+                host.WriteLine(worker[0]);
             }
         }
     }
