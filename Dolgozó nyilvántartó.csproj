@@ -8,4 +8,12 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
 
+  <ItemGroup>
+    <Folder Include="Infrastructure\" />
+    <Folder Include="Applciation\" />
+    <Folder Include="Database\" />
+    <Folder Include="Repository\" />
+    <Folder Include="Resource\" />
+  </ItemGroup>
+
 </Project>
