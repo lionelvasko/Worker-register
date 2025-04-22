@@ -14,11 +14,10 @@ namespace Dolgozó_nyilvántartó.Applciation
         private IHost _host;
         public string Name => "ExportWorkers";
 
-        public ExportWorkersCommand(IController controller, IFileManager fileManager, IHost host)
+        public ExportWorkersCommand(IController controller, IFileManager fileManager)
         {
             _controller = controller;
             _fileManager = fileManager;
-            _host = host;
         }
 
         public void Execute(IHost host, string[] args)
@@ -32,7 +31,7 @@ namespace Dolgozó_nyilvántartó.Applciation
                 {
                     content.AppendLine(worker.Name);
                 }
-                
+                _fileManager.WriteToFile(args[0], content.ToString());
             }
         }
     }

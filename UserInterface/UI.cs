@@ -31,7 +31,14 @@ namespace Dolgozó_nyilvántartó.UserInterface
                     continue;
                 }
 
-                commandToExecute.Execute(_host, splittedInput);
+                try
+                {
+                    commandToExecute.Execute(_host, splittedInput[1..]);
+                }
+                catch (Exception ex)
+                {
+                    _host.WriteLine(ex.Message);
+                }
             }
         }
 

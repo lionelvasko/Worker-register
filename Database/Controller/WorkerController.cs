@@ -10,6 +10,21 @@ namespace Dolgozó_nyilvántartó.Database.Controllers
             var guid = Guid.Empty;
             using (var context = new WorkerContext())
             {
+                var currentWorkers = context.Workers;
+                foreach(var forWorker in currentWorkers)
+                {
+                    WorkerDTO forDTO = new WorkerDTO()
+                    {
+                        Name = forWorker.Name,
+                        Email = forWorker.Email,
+                        Age = forWorker.Age,
+                        Salary = forWorker.Salary
+                    };
+                    if(forDTO == worker)
+                    {
+                        throw new Exception("A dolgozó már létezik");
+                    }
+                }
                 guid = Guid.NewGuid();
                 var newWorker = new WorkerEntity()
                 {

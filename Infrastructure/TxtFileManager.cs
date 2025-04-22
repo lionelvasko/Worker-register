@@ -11,7 +11,7 @@ namespace Dolgozó_nyilvántartó.Infrastructure
     // SOLID elvek talán sérti a Single Responsibility-t
     internal class TxtFileManager : IFileManager
     {
-        public string FileDirectory => Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location) ?? string.Empty;
+        public string FileDirectory { get; } = Path.GetFullPath(Path.Combine(AppContext.BaseDirectory, "..", "..", "..", "Resource"));
         public string FileExtension => ".txt";
 
         public TxtFileManager()
@@ -64,7 +64,15 @@ namespace Dolgozó_nyilvántartó.Infrastructure
 
         public void WriteToFile(string fileName, string content)
         {
-            throw new NotImplementedException();
+            string fullPath = Path.Combine(FileDirectory, fileName + FileExtension);
+            if (!FileExists(fileName))
+            {
+                CreateFile(fileName);
+            }
+            using (StreamWriter streamWriter = new StreamWriter(fullPath, append: false))
+            {
+                streamWriter.WriteLine(content);
+            }
         }
     }
 }
